@@ -26,15 +26,16 @@
   <div id="app">Loading ...</div>
   <script>
     window.$docsify = {
-      // alias: {
+      alias: {
       //   '.*?/awesome': 'https://raw.githubusercontent.com/docsifyjs/awesome-docsify/master/README.md',
       //   '.*?/changelog': 'https://raw.githubusercontent.com/docsifyjs/docsify/master/CHANGELOG.md',
       //   '/.*/_navbar.md': '/_navbar.md',
       //   '/zh-cn/(.*)': 'https://raw.githubusercontent.com/docsifyjs/docs-zh/master/$1',
       //   '/de-de/(.*)': 'https://raw.githubusercontent.com/docsifyjs/docs-de/master/$1',
       //   '/ru/(.*)': 'https://raw.githubusercontent.com/docsifyjs/docs-ru/master/$1',
-      //   '/es/(.*)': 'https://raw.githubusercontent.com/docsifyjs/docs-es/master/$1'
-      // },
+        '/md/(.*)': 'https://raw.githubusercontent.com/wmgselfblog/docs/master/md/$1'
+      },
+      // basepath: 'https://raw.githubusercontent.com/wmgselfblog/docs/master',
       auto2top: true,
       coverpage: true,
       executeScript: true,
@@ -43,12 +44,10 @@
       mergeNavbar: true,
       maxLevel: 4,
       subMaxLevel: 2,
-      name: 'docsify',
+      name: '点滴',
       search: {
         noData: {
-          '/de-de/': 'Keine Ergebnisse!',
-          '/zh-cn/': '没有结果!',
-          '/': 'No results!'
+          '/': '没有结果'
         },
         paths: 'auto',
         placeholder: {
@@ -61,15 +60,8 @@
       plugins: [
         function (hook, vm) {
           hook.beforeEach(function (html) {
-            if (/githubusercontent\.com/.test(vm.route.file)) {
-              url = vm.route.file
-                .replace('raw.githubusercontent.com', 'github.com')
-                .replace(/\/master/, '/blob/master')
-            } else {
-              url = '' + vm.route.file
-            }
-            var editHtml = '[:memo: Edit Document](' + url + ')\n'
-
+            url = 'https://github.com/wmgselfblog/docs/edit/master/' + vm.route.file
+            var editHtml = '[:memo: 编辑文件](' + url + ')\n'
             return editHtml
               + html
               + '\n\n----\n\n'
@@ -90,7 +82,7 @@
     room: 'docsifyjs/Lobby'
   };
   </script>
-  <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script>
+  <!-- <script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async defer></script> -->
 </body>
 
 </html>
